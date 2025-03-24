@@ -8,12 +8,12 @@ class AnnonceRepository implements IAnnonceRepository
 {
     public function all()
     {
-        return Annonce::with('recruiter', 'candidatures')->get();
+        return Annonce::with('recruiter', 'candidatures.candidate')->get();
     }
 
     public function find($id)
     {
-        return Annonce::with('recruiter', 'candidatures')->findOrFail($id);
+        return Annonce::with('recruiter', 'candidatures.candidate')->findOrFail($id);
     }
 
     public function create(array $data)
