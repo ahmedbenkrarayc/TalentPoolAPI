@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-use APp\Models\Annonce;
+use App\Repositories\Interfaces\IAnnonceRepository;
+use App\Models\Annonce;
 
 class AnnonceRepository implements IAnnonceRepository
 {
