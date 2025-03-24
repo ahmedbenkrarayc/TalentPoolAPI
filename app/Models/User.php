@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
+use App\Models\Annonce;
+use App\Models\Candidature;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -62,5 +64,13 @@ class User extends Authenticatable implements JWTSubject
         return [
             'role' => $this->role,
         ];
+    }
+
+    public function annonces(){
+        return $this->hasMany(Annonce::class, 'recruiter_id');
+    }
+
+    public function candidatures(){
+        return $this->hasMany(Candidature::class, 'candidate_id');
     }
 }
