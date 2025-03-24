@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->text('cv');
             $table->text('coverletter');
-            $table->string('status');
-            $table->unsignedBigInteger('recruiter_id');
+            $table->string('status')->default('pending');
+            $table->unsignedBigInteger('annonce_id');
             $table->unsignedBigInteger('candidate_id');
-            $table->foreign('recruiter_id')->references('id')->on('users');
+            $table->foreign('annonce_id')->references('id')->on('annonce');
             $table->foreign('candidate_id')->references('id')->on('users');
             $table->timestamps();
         });
