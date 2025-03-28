@@ -11,4 +11,5 @@ interface ICandidatureRepository
     public function delete(int $id);
     public function getAll();
     public function getById(int $id);
+    public function updateStatus(int $id, string $status);
 }
