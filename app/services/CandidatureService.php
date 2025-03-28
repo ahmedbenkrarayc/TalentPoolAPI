@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\ICandidatureRepository;
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\SendStatusChangeInMail;
 
 class CandidatureService
 {
@@ -51,5 +52,16 @@ class CandidatureService
     public function getCandidatureById(int $id)
     {
         return $this->candidatureRepository->getById($id);
+    }
+
+    public function updateCandidatureStatus(int $id, string $status){
+        $candidature = $this->candidatureRepository->updateStatus($id, $status);
+        if($candidature){
+            $candidature->load('annonce');
+            SendStatusChangeInMail::dispatch($user, $status, $candidature->annonce->title);
+            return true;
+        }
+
+        return false;
     }
 }

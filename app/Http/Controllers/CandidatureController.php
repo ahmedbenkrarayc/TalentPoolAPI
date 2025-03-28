@@ -56,4 +56,15 @@ class CandidatureController extends Controller
 
         return new CandidatureResource($candidature);
     }
+
+    public function updateStatus(Request $request, int $id){
+        $candidature = $this->candidatureService->updateCandidatureStatus($id, $request->status);
+        if (!$candidature) {
+            return response()->json(['message' => 'Something went wrong while updating status.'], 500);
+        }
+
+        return response()->json([
+            'message' => 'Status updated successfully!'
+        ],200);
+    }
 }
