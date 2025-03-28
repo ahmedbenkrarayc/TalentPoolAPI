@@ -35,5 +35,7 @@ class JwtRefreshMiddleware
         } catch (\Exception $e) {
             return response()->json(['error' => 'Refresh token is invalid or expired'], Response::HTTP_UNAUTHORIZED);
         }
+        
+        return $next($request);
     }
 }

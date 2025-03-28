@@ -17,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'jwt.api' => JwtMiddleware::class,
-            'jwt.refresh' => JwtRefreshMiddleware::class,
+            'jwt.refreshtoken' => JwtRefreshMiddleware::class,
             'role' => RoleMiddleware::class,
         ]);
     })
