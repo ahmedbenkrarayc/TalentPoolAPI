@@ -39,4 +39,11 @@ class CandidatureRepository implements ICandidatureRepository
     {
         return Candidature::with('candidate', 'annonce')->find($id);
     }
+
+    public function updateStatus(int $id, string $status){
+        $candidature = Candidature::findOrFail($id);
+        $candidature->status = $status;
+        $candidature->save();
+        return $candidature;
+    }
 }
